@@ -5,4 +5,5 @@
   (lib (name "MPR121")(type "KiCad")(uri "${KIPRJMOD}/libraries/MPR121.kicad_sym")(options "")(descr ""))
   (lib (name "adafruit-MAX98357")(type "KiCad")(uri "${KIPRJMOD}/libraries/adafruit-MAX98357.kicad_sym")(options "")(descr ""))
   (lib (name "ENC28J60")(type "KiCad")(uri "${KIPRJMOD}/libraries/ENC28J60.kicad_sym")(options "")(descr ""))
+  (lib (name "SD_module")(type "KiCad")(uri "${KIPRJMOD}/SD_module.kicad_sym")(options "")(descr ""))
 )

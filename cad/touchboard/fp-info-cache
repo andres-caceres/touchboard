@@ -1,4 +1,4 @@
-23750444509368042
+23750454095354242
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -56655,8 +56655,8 @@ ENC28J60
 
 
 0
-8
-8
+10
+10
 ESP32-DEVKIT-V1
 MODULE_ESP32_DEVKIT_V1
 

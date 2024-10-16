@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include <WiFi.h>
-#include <WebServer.h>
+#include <WiFiUdp.h>
+//#include <WebServer.h>
 #include <Wire.h>
 #include <MPR121.h>
 #include <MPR121_Datastream.h>
@@ -10,16 +11,27 @@
 #define MPR121_ADDR 0x5A
 #define MPR121_INT 4
 
+#ifndef _BV
+#define _BV(x) (1 << x)
+#endif
+  
 // MPR121 datastream behaviour constants
 const bool MPR121_DATASTREAM_ENABLE = false;
 
-const char* ssid = "ESP32-AP";
+const char* ssid = "ESP32-Access-Point";
 const char* password = "123456789";
 
-WebServer server(80); // Create a web server on port 80
+//WebServer server(80); // Create a web server on port 80
+WiFiUDP udp;
+const int udpPort = 1234; // Port to send UDP packets
 
 void handleRoot();
 void handleSave();
+
+void setupSensors();
+void setupWifi();
+void setupUDPserver();
+void setupWebserver();
 
 void setup() {
   
@@ -31,11 +43,67 @@ void setup() {
   Serial.println("Starting...");
 
   // Set up the SD card
-  if (!SD.begin(15)) {
-    Serial.println("error initializing SD card");
-    while (1);
-  }
+  //setupSDCard();
+  
+  // Set up the MPR121 sensor
+  setupSensors();
+  
+  // Set up the WiFi
+  setupWifi();
+  
+  // Set up the UDP server
+  setupUDPserver();
+  
+  // Set up the web server
+  //setupWebserver();
 
+}
+
+void loop() {
+    
+  MPR121.updateAll();
+
+  if (MPR121_DATASTREAM_ENABLE) {
+    MPR121_Datastream.update();
+  }
+  //server.handleClient(); // Handle incoming client requests
+  
+  const char *init_msg = "MPR121 Datastream";
+  uint16_t data = MPR121.getTouchData();
+  String message = String(data, HEX);
+
+  // Broadcast the UDP packet
+  udp.beginPacket(IPAddress(255, 255, 255, 255), udpPort);
+  udp.print(message); // Use udp.print() instead of udp.write()
+  udp.endPacket();
+  Serial.println(message);
+  delay(5);
+}
+
+void setupWifi() {
+  // Set up the Access Point
+  WiFi.softAP(ssid, password);
+  Serial.println("Access Point started");
+
+  Serial.print("AP IP address: ");
+  Serial.println(WiFi.softAPIP());
+}
+
+void setupUDPserver() {
+  // Set up the UDP server
+  udp.begin(udpPort);
+  Serial.println("UDP server started on port " + String(udpPort));
+}
+/*
+void setupWebserver() {
+  // Start the server
+  server.on("/", handleRoot); // Handle the root URL
+  server.begin();
+  Serial.println("HTTP server started");
+  server.on("/save", HTTP_POST, handleSave);
+}
+*/
+void setupSensors() {
   // Set up the MPR121 sensor
   if (!MPR121.begin(MPR121_ADDR)) {
     Serial.println("error setting up MPR121");
@@ -83,39 +151,17 @@ void setup() {
   delay(1000);
   MPR121.autoSetElectrodes();  // autoset all electrode settings
   digitalWrite(LED_BUILTIN, LOW);
-
-  // Set up the Access Point
-  WiFi.softAP(ssid, password);
-  Serial.println("Access Point Started");
-
-  // Start the server
-  server.on("/", handleRoot); // Handle the root URL
-  server.begin();
-  Serial.println("HTTP server started");
-  server.on("/save", HTTP_POST, handleSave);
 }
 
-void loop() {
-    server.handleClient(); // Handle incoming client requests
-    MPR121.updateAll();
-
-    for (int i = 0; i < 12; i++) {
-      if (MPR121.isNewTouch(i)) {
-        Serial.print("electrode ");
-        Serial.print(i, DEC);
-        Serial.println(" was just touched");
-      } else if (MPR121.isNewRelease(i)) {
-        Serial.print("electrode ");
-        Serial.print(i, DEC);
-        Serial.println(" was just released");
-      }
-    }
-
-    if (MPR121_DATASTREAM_ENABLE) {
-      MPR121_Datastream.update();
-    }
+void setupSDCard() {
+  // Set up the SD card
+  if (!SD.begin(15)) {
+    Serial.println("error initializing SD card");
+    while (1);
+  }
 }
 
+/*
 // Function to handle root URL
 void handleRoot() {
     String html = "<h1>ESP32 Configuration</h1>";
@@ -133,3 +179,4 @@ void handleSave() {
     }
     server.send(200, "text/html", "<h1>Parameter Saved</h1>");
 }
+*/

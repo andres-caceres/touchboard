@@ -373,6 +373,11 @@ bool MPR121_type::getTouchData(uint8_t electrode){
   return((touchData>>electrode)&1);
 }
 
+uint16_t MPR121_type::getTouchData(){
+  if (!isInited()) return(0x0);
+  return(touchData);
+}
+
 uint8_t MPR121_type::getNumTouches(){
   if(!isInited()) return(0xFF);
 

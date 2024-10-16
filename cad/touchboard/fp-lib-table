@@ -6,4 +6,5 @@
   (lib (name "yaaj_dcdc_stepdown_lm2596")(type "KiCad")(uri "${KIPRJMOD}/libraries/yaaj_dcdc_stepdown_lm2596")(options "")(descr ""))
   (lib (name "ENC28J60")(type "KiCad")(uri "${KIPRJMOD}/libraries/ENC28J60.pretty")(options "")(descr ""))
   (lib (name "SD")(type "KiCad")(uri "${KIPRJMOD}/libraries/SD.pretty")(options "")(descr ""))
+  (lib (name "logo")(type "KiCad")(uri "${KIPRJMOD}/libraries/logo.pretty")(options "")(descr ""))
 )

@@ -1,4 +1,4 @@
-23752183115409311
+23753897851957169
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -96662,6 +96662,13 @@ adafruit-MAX98357
 0
 9
 9
+logo
+checkpoint_logo
+
+
+0
+0
+0
 yaaj_dcdc_stepdown_lm2596
 YAAJ_DCDC_StepDown_LM2596
 

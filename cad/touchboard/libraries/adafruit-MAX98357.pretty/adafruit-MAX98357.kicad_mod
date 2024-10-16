@@ -85,76 +85,6 @@
 		(uuid "5c7745df-1b01-4114-a86c-8def0ff5c6d1")
 	)
 	(fp_line
-		(start -3.72 -9.647)
-		(end -3.72 -8.247)
-		(stroke
-			(width 0.2032)
-			(type solid)
-		)
-		(layer "F.SilkS")
-		(uuid "9b0814e4-f5d6-4458-8cc2-81542f6c52b4")
-	)
-	(fp_line
-		(start -3.72 -8.247)
-		(end -3.72 -2.647)
-		(stroke
-			(width 0.2032)
-			(type solid)
-		)
-		(layer "F.SilkS")
-		(uuid "a0142f70-b8d3-4416-86ff-a494f2f4ba9a")
-	)
-	(fp_line
-		(start -3.72 -2.647)
-		(end 3.28 -2.647)
-		(stroke
-			(width 0.2032)
-			(type solid)
-		)
-		(layer "F.SilkS")
-		(uuid "8ad47e9e-3fdc-48d1-8689-ddb73a933f58")
-	)
-	(fp_line
-		(start 3.28 -9.647)
-		(end -3.72 -9.647)
-		(stroke
-			(width 0.2032)
-			(type solid)
-		)
-		(layer "F.SilkS")
-		(uuid "201f7069-6f73-433f-8c16-907ede5ce242")
-	)
-	(fp_line
-		(start 3.28 -8.247)
-		(end -3.72 -8.247)
-		(stroke
-			(width 0.2032)
-			(type solid)
-		)
-		(layer "F.SilkS")
-		(uuid "29471bd8-cdfc-48c4-a37e-79f8cfff1667")
-	)
-	(fp_line
-		(start 3.28 -8.247)
-		(end 3.28 -9.647)
-		(stroke
-			(width 0.2032)
-			(type solid)
-		)
-		(layer "F.SilkS")
-		(uuid "4fed8f02-66fa-40ee-af12-c9bd26cb60aa")
-	)
-	(fp_line
-		(start 3.28 -2.647)
-		(end 3.28 -8.247)
-		(stroke
-			(width 0.2032)
-			(type solid)
-		)
-		(layer "F.SilkS")
-		(uuid "1985507c-8510-419a-abc0-b5e43316f525")
-	)
-	(fp_line
 		(start 6.23 9.447)
 		(end -6.47 9.447)
 		(stroke
@@ -327,6 +257,20 @@
 			)
 		)
 	)
+	(pad "" np_thru_hole circle
+		(at -6.47 -7.063)
+		(size 3.4 3.4)
+		(drill 3.4)
+		(layers "F&B.Cu" "*.Mask")
+		(uuid "783bd2c7-c529-4faf-95a5-d81b01fdd387")
+	)
+	(pad "" np_thru_hole circle
+		(at 6.23 -7.063)
+		(size 3.4 3.4)
+		(drill 3.4)
+		(layers "F&B.Cu" "*.Mask")
+		(uuid "f487713d-c22c-4670-86b3-8b70db81c421")
+	)
 	(pad "1" thru_hole oval
 		(at 7.5 6.907 270)
 		(size 3 1.75)
@@ -403,24 +347,6 @@
 		(remove_unused_layers no)
 		(solder_mask_margin 0.0508)
 		(uuid "d56d022c-cbba-46d1-a979-c58c0f69a87a")
-	)
-	(pad "8" thru_hole oval
-		(at -1.92 -6.047 180)
-		(size 2.5 4)
-		(drill 1)
-		(layers "*.Cu" "*.Mask")
-		(remove_unused_layers no)
-		(solder_mask_margin 0.0508)
-		(uuid "3b704eef-0794-48bc-bda0-37019dcaa58c")
-	)
-	(pad "9" thru_hole oval
-		(at 1.58 -6.047 180)
-		(size 2.5 4)
-		(drill 1)
-		(layers "*.Cu" "*.Mask")
-		(remove_unused_layers no)
-		(solder_mask_margin 0.0508)
-		(uuid "fcfb9c75-21cd-46c2-9a2b-90f98beea2ac")
 	)
 	(model "${KIPRJMOD}/lib/adafruit-MAX98357/adafruit-max98357.step"
 		(offset

@@ -5754,6 +5754,16 @@
 	)
 	(wire
 		(pts
+			(xy 66.04 83.82) (xy 71.12 83.82)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4c64a7d2-4380-493b-be32-6cb2ac80bd62")
+	)
+	(wire
+		(pts
 			(xy 38.1 175.26) (xy 38.1 177.8)
 		)
 		(stroke
@@ -6461,6 +6471,16 @@
 			(type default)
 		)
 		(uuid "a254edf7-9b8d-4cfb-a389-c1abea01567d")
+	)
+	(wire
+		(pts
+			(xy 156.21 33.02) (xy 158.75 33.02)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a79b499a-3a25-4add-9729-67442ae8f671")
 	)
 	(wire
 		(pts
@@ -7254,28 +7274,6 @@
 			)
 		)
 	)
-	(global_label "LED_PWM1"
-		(shape input)
-		(at 31.75 91.44 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "14ea258e-3603-46e9-ae69-08dc6aab4324")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 18.9678 91.44 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
 	(global_label "ELE5"
 		(shape input)
 		(at 251.46 85.09 180)
@@ -7514,6 +7512,28 @@
 					(size 1.27 1.27)
 				)
 				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "LED_PWM1"
+		(shape input)
+		(at 71.12 83.82 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "389cd6dc-5704-4036-9f71-eeac7a1ce194")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 83.9022 83.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 				(hide yes)
 			)
 		)
@@ -8244,28 +8264,6 @@
 			)
 		)
 	)
-	(global_label "I2C_ADD"
-		(shape input)
-		(at 151.13 57.15 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "a74b860e-9aa5-4fae-95dd-7f6614fb195f")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 140.4643 57.15 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
 	(global_label "ELE2"
 		(shape input)
 		(at 182.88 27.94 0)
@@ -8301,6 +8299,28 @@
 		(uuid "a8c15ece-6293-4f04-a370-6ba151a1aa26")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 251.2567 19.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "IRQ"
+		(shape input)
+		(at 31.75 91.44 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "a93d863f-6dcf-4aef-9b82-afb50f271d8f")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 25.5595 91.44 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8807,6 +8827,28 @@
 		(uuid "d25af13e-4d43-468f-a5c9-c394d30c7d17")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 103.6948 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "IRQ"
+		(shape input)
+		(at 156.21 33.02 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "d2998cf9-0015-42b2-9a72-8d714b1e7200")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 150.0195 33.02 0)
 			(effects
 				(font
 					(size 1.27 1.27)

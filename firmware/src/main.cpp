@@ -7,6 +7,7 @@
 #include <MPR121_Datastream.h>
 #include <SD.h>
 #include <SPI.h>
+#include <EthernetENC.h>
 
 #define MPR121_ADDR 0x5A
 #define MPR121_INT 4
@@ -18,6 +19,7 @@
 // MPR121 datastream behaviour constants
 const bool MPR121_DATASTREAM_ENABLE = false;
 
+//WiFi variables
 const char* ssid = "ESP32-Access-Point";
 const char* password = "123456789";
 
@@ -25,12 +27,22 @@ const char* password = "123456789";
 WiFiUDP udp;
 const int udpPort = 1234; // Port to send UDP packets
 
+// Ethernet variables
+byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
+IPAddress ip(192, 168, 1, 103);  // Static IP for the ESP32
+unsigned int localPort = 8888;    // Local port to listen on
+IPAddress remoteIp(192, 168, 1, 105); // Replace with your remote device IP
+unsigned int remotePort = 8888;   // Remote port to send data to
+
+EthernetUDP Eth_udp;
+
 void handleRoot();
 void handleSave();
 
 void setupSensors();
 void setupWifi();
-void setupUDPserver();
+void setupEthernet();
+void setupWiFiUDPserver();
 void setupWebserver();
 
 void setup() {
@@ -51,8 +63,11 @@ void setup() {
   // Set up the WiFi
   setupWifi();
   
-  // Set up the UDP server
-  setupUDPserver();
+  // Set up the WiFi UDP server
+  setupWiFiUDPserver();
+
+  // Set up the Ethernet UDP server
+  setupEthernet();
   
   // Set up the web server
   //setupWebserver();
@@ -75,7 +90,12 @@ void loop() {
   // Broadcast the UDP packet
   udp.beginPacket(IPAddress(255, 255, 255, 255), udpPort);
   udp.print(message); // Use udp.print() instead of udp.write()
-  udp.endPacket();
+  udp.endPacket();;
+
+  Eth_udp.beginPacket(remoteIp, remotePort);
+  Eth_udp.print(message); // Use udp.print() instead of udp.write()
+  Eth_udp.endPacket();
+
   Serial.println(message);
   delay(5);
 }
@@ -89,7 +109,19 @@ void setupWifi() {
   Serial.println(WiFi.softAPIP());
 }
 
-void setupUDPserver() {
+void setupEthernet() {
+  // Set up the Ethernet connection
+  if (Ethernet.begin(mac) == 0) {
+    Serial.println("Failed to configure Ethernet using DHCP");
+    Ethernet.begin(mac, ip); // Start with a static IP if DHCP fails
+  }
+  
+  Eth_udp.begin(localPort);
+  Serial.print("Local IP: ");
+  Serial.println(Ethernet.localIP());
+}
+
+void setupWiFiUDPserver() {
   // Set up the UDP server
   udp.begin(udpPort);
   Serial.println("UDP server started on port " + String(udpPort));
